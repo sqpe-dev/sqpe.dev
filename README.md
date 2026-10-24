@@ -2,6 +2,8 @@
 
 An independent, source-backed field guide to Semantic Query Processing Engines.
 
+Published on Cloudflare Workers Static Assets: https://sqpe-dev.oktieh.workers.dev. Custom domain: https://sqpe.dev.
+
 First edition: 22 research profiles, three industry profiles, a fundamentals guide, searchable research library, system comparison, evaluation guide, and editorial policy.
 
 ## Local development
