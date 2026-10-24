@@ -1,7 +1,19 @@
-# Contributing to sqpe.dev
+# Contributing
 
-For bibliography additions, corrections, and editorial profile changes, use the [public catalog](https://github.com/sqpe-dev/catalog). Its structured issue forms require only a primary source and relevance explanation; pull requests may edit the records directly. See its CONTRIBUTING.md for evidence standards and reuse terms.
+## Sources and editorial corrections
 
-For website changes, edit templates in scripts/build.mjs and browser assets in src/. Run npm run check and inspect wide and narrow layouts after visual changes.
+Propose bibliography additions, metadata corrections, and profile changes in the [public catalog](https://github.com/sqpe-dev/catalog/issues/new/choose). A primary source and a short explanation of relevance are enough to submit a suggestion. Its contribution guide defines review standards and reuse terms.
 
-The files data/catalog.json and data/reference-inventory.json are versioned snapshots, not independent editorial sources. Update them with npm run catalog:update -- <full catalog commit SHA>. Commit the lock file with the data. The build rejects checksum mismatches. Historical references/state-of-the-art.md is research input; new bibliography contributions belong upstream.
+The files in `data/` are pinned snapshots. Update them with `npm run catalog:update -- <full catalog commit SHA>` and commit the lock file with the data. Historical material in `references/` is retained for provenance; new references belong in the catalog.
+
+## Website changes
+
+Open an issue describing the affected page and expected behavior, or submit a focused pull request. For visual problems, include the viewport size and relevant browser when available. For proposed features, explain the reader's task and how the change supports it.
+
+1. Install the pinned development dependencies with `npm ci`.
+2. Make the change, keeping source titles, evidence statements, and review dates faithful to the catalog.
+3. Run `npm run format` and `npm run check`.
+4. For visual or interactive changes, inspect desktop and narrow layouts, keyboard focus, navigation, filters, and any affected comparison behavior.
+5. Describe the resulting behavior and relevant validation in the pull request.
+
+Keep changes proportionate to the problem. Tests should cover meaningful failure cases and public behavior. Do not introduce tracking, external runtime scripts, or unsupported editorial claims. Deployment must be verified separately from a successful build.

@@ -11,7 +11,17 @@
     "build": "node scripts/build.mjs",
     "dev": "node scripts/serve.mjs",
     "test": "node --test",
-    "check": "npm run build && npm test",
-    "catalog:update": "node scripts/update-catalog.mjs"
-  }
+    "check": "npm run format:check && npm run build && npm test",
+    "catalog:update": "node scripts/update-catalog.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "3.9.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sqpe-dev/sqpe.dev.git"
+  },
+  "homepage": "https://sqpe.dev"
 }

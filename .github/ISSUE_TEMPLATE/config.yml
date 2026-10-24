@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Suggest a source or correct a catalog entry
+    url: https://github.com/sqpe-dev/catalog/issues/new/choose
+    about: Bibliographic records and editorial profiles are maintained in the public catalog.

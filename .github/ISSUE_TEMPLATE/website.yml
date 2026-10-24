@@ -1,0 +1,22 @@
+name: Website issue
+description: Report a problem with a page, layout, navigation, or interaction.
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Affected page
+      placeholder: https://sqpe.dev/catalog/
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include steps to reproduce and what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Browser and viewport
+      description: Include the browser, device or viewport size, and screenshots if useful.

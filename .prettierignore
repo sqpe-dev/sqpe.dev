@@ -1,0 +1,8 @@
+dist/
+node_modules/
+.wrangler/
+# Preserve exact upstream bytes and historical reference citations.
+data/catalog.json
+data/reference-inventory.json
+references/state-of-the-art.md
+package-lock.json
