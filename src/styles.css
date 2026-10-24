@@ -5,3 +5,6 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
 .benchmark-section .section-head p{max-width:780px;margin-top:14px}.benchmark-list .record h3{font-size:24px;margin:12px 0}.benchmark-section .benchmark-list{margin-bottom:0}
+
+/* Full bibliography */
+.bibliography{display:block}.bibliography .record{border-bottom:1px solid var(--line,#d8d8d3);padding:1.5rem 0;scroll-margin-top:6rem;overflow-wrap:anywhere}.bibliography h2{font-size:1.25rem;max-width:65ch}.bibliography details{margin:1rem 0;font-size:.9rem}.bibliography summary{cursor:pointer}.toolbar select{max-width:100%}.toolbar label{min-width:0}.bibliography .record-foot{flex-wrap:wrap;gap:1rem}@media(max-width:700px){.toolbar{flex-wrap:wrap}.toolbar label{width:100%}.toolbar select{width:100%}.results-label{flex-wrap:wrap;gap:1rem}}
