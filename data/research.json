@@ -105,7 +105,8 @@
     ],
     "verifiedDate": "2026-10-23",
     "evidence": "Primary source reviewed",
-    "caveat": "Results are a snapshot of evolving systems, models and configurations; they do not establish a permanent leaderboard."
+    "caveat": "Results are a snapshot of evolving systems, models and configurations; they do not establish a permanent leaderboard.",
+    "benchmarkGroup": "engine"
   },
   {
     "id": "lrobench",
@@ -123,7 +124,8 @@
     ],
     "verifiedDate": "2026-10-23",
     "evidence": "Primary source reviewed",
-    "caveat": "Operator-level findings depend on model, implementation and workload; the benchmark complements rather than replaces end-to-end evaluation."
+    "caveat": "Operator-level findings depend on model, implementation and workload; the benchmark complements rather than replaces end-to-end evaluation.",
+    "benchmarkGroup": "engine"
   },
   {
     "id": "sema",
@@ -202,7 +204,7 @@
     "name": "Same Query, Different Answer",
     "title": "Same Query, Different Answer: Run-to-Run Variance in Semantic Query Processing",
     "year": 2026,
-    "category": "Benchmark",
+    "category": "Evaluation study",
     "interface": "Repeated benchmark executions",
     "summary": "Studies how repeated model decisions propagate into changing query answers and proposes reporting practices for reproducible evaluation.",
     "url": "https://arxiv.org/abs/2610.13823",
@@ -213,7 +215,8 @@
     ],
     "verifiedDate": "2026-10-23",
     "evidence": "Primary source reviewed",
-    "caveat": "October 2026 preprint. This is an evaluation study rather than a new engine; findings concern the tested models and workloads."
+    "caveat": "October 2026 preprint. This is an evaluation study rather than a new engine; findings concern the tested models and workloads.",
+    "benchmarkGroup": "methodology"
   },
   {
     "id": "sembaker",
@@ -394,5 +397,147 @@
     "verifiedDate": "2026-10-23",
     "evidence": "Primary source reviewed",
     "caveat": "Short preprint evaluated on three datasets; routing success on those workloads does not establish universal optimality."
+  },
+  {
+    "id": "uda-bench",
+    "name": "UDA-Bench",
+    "title": "Unstructured Data Analysis using LLMs: A Comprehensive Benchmark",
+    "year": 2025,
+    "category": "Benchmark",
+    "interface": "Document analytics / relational ground truth",
+    "benchmarkGroup": "engine",
+    "summary": "Evaluates unstructured-document analysis against manually annotated relational views. The arXiv v1 workload contains five datasets and 240 queries covering extraction, filtering, aggregation, joins, and combinations of operators.",
+    "tags": [
+      "Documents",
+      "Relational ground truth",
+      "End-to-end"
+    ],
+    "url": "https://arxiv.org/abs/2510.27119",
+    "caveat": "Ground truth is defined over selected schema attributes, so coverage does not extend to arbitrary open-ended document questions. Dataset counts differ between the cited arXiv version and repository descriptions; specify the artifact version when reporting results.",
+    "reviewNote": "Publication record and benchmark-construction sections reviewed. The workload evaluates accuracy, model cost, and latency. No experiments were rerun.",
+    "resources": [
+      {
+        "label": "Paper: benchmark construction",
+        "url": "https://arxiv.org/html/2510.27119v1#S3"
+      },
+      {
+        "label": "UDA-Bench repository",
+        "url": "https://github.com/Chandrika2527/UDA-Bench"
+      }
+    ],
+    "verifiedDate": "2026-10-23",
+    "evidence": "Primary source reviewed"
+  },
+  {
+    "id": "shelob",
+    "name": "Shelob",
+    "title": "Prune First, Decide Fast: Scalable Semantic Query Processing with JEVDB",
+    "year": 2026,
+    "category": "Benchmark",
+    "interface": "TPC-DS-derived semantic joins",
+    "benchmarkGroup": "engine",
+    "summary": "Extends TPC-DS-derived relations with return reports, issue bulletins, and release notes to study semantic-join scaling. The JEVDB paper evaluates five queries at XS, S, and M tiers.",
+    "tags": [
+      "Semantic joins",
+      "Scalability",
+      "TPC-DS"
+    ],
+    "url": "https://arxiv.org/abs/2610.02046",
+    "caveat": "Introduced and evaluated by the JEVDB authors. The full SF1 workload is larger than the measured tiers; its candidate count must not be presented as an executed comparison. Shelob is not an official TPC benchmark or an independent validation of JEVDB.",
+    "reviewNote": "Reviewed the experimental setup and Shelob evaluation sections of the JEVDB paper. The protocol reports answer F1, cost, latency, and timeout progress. No experiments were rerun.",
+    "resources": [
+      {
+        "label": "Shelob evaluation in the JEVDB paper",
+        "url": "https://arxiv.org/html/2610.02046v1#S4"
+      }
+    ],
+    "verifiedDate": "2026-10-23",
+    "evidence": "Primary source reviewed"
+  },
+  {
+    "id": "spider2-aifunc",
+    "name": "Spider 2.0-AIFunc",
+    "title": "Spider 2.0-AIFunc: Extending Real-World Text-to-SQL to AI-Native SQL Workflows",
+    "year": 2026,
+    "category": "Benchmark",
+    "interface": "Natural language to SQL with AI functions",
+    "benchmarkGroup": "generation",
+    "summary": "Tests whether models generate Snowflake SQL that composes relational operations with AI functions for classification, filtering, sentiment analysis, extraction, similarity, and aggregation.",
+    "tags": [
+      "Query generation",
+      "SQL",
+      "AI functions"
+    ],
+    "url": "https://arxiv.org/abs/2607.06229",
+    "caveat": "Evaluates SQL generation, not engine execution performance. The paper reports 465 instances; the public task release contains 393. Gold SQL and database resources are not bundled, and official scoring requires additional access.",
+    "resources": [
+      {
+        "label": "Benchmark repository and access requirements",
+        "url": "https://github.com/Leolty/Spider2-AIFunc"
+      },
+      {
+        "label": "Released task dataset",
+        "url": "https://huggingface.co/datasets/tianyang/spider2-aifunc"
+      }
+    ],
+    "verifiedDate": "2026-10-23",
+    "evidence": "Primary source reviewed"
+  },
+  {
+    "id": "vectorsqlbench",
+    "name": "VectorSQLBench",
+    "title": "Text2VectorSQL: Towards a Unified Interface for Vector Search and SQL Queries",
+    "year": 2025,
+    "category": "Benchmark",
+    "interface": "Natural language to SQL with vector search",
+    "benchmarkGroup": "generation",
+    "summary": "Benchmarks generation of queries combining relational operations and vector search, spanning three database backends and four source collections. Examines result omissions when SQL filters interact with vector retrieval.",
+    "tags": [
+      "Query generation",
+      "Vector search",
+      "Hybrid data"
+    ],
+    "url": "https://arxiv.org/abs/2506.23071",
+    "caveat": "An adjacent query-generation benchmark. Vector similarity is a retrieval operation and does not establish the quality or efficiency of arbitrary model-backed filters, joins, or aggregations.",
+    "verifiedDate": "2026-10-23",
+    "evidence": "Primary source reviewed"
+  },
+  {
+    "id": "hybrid-deep-research",
+    "name": "HybridDeepResearch",
+    "title": "Benchmarking Hybrid Deep Research Across Database Querying and Web Search",
+    "year": 2026,
+    "category": "Benchmark",
+    "interface": "Agents combining SQL and web search",
+    "benchmarkGroup": "adjacent",
+    "summary": "Evaluates agents on 380 tasks requiring both database queries and web evidence. Tasks exercise database-to-search, search-to-database, and parallel reasoning, with an emphasis on preserving constraints across tools.",
+    "tags": [
+      "Agents",
+      "SQL",
+      "Web search"
+    ],
+    "url": "https://arxiv.org/abs/2609.09410",
+    "caveat": "Measures agent coordination and final-answer correctness across tools. It does not isolate semantic operator execution or query optimizer performance, and web evidence can change over time.",
+    "verifiedDate": "2026-10-23",
+    "evidence": "Primary source reviewed"
+  },
+  {
+    "id": "stochastic-shift",
+    "name": "The Stochastic Shift",
+    "title": "The Stochastic Shift: A New Evaluation Paradigm for Text-to-SQL with AI Operators",
+    "year": 2026,
+    "category": "Evaluation study",
+    "interface": "Evaluation of SQL containing AI operators",
+    "benchmarkGroup": "methodology",
+    "summary": "Studies failures of exact-result scoring for SQL with stochastic AI operators. Proposes evaluating relational logic and semantic operations separately, with experiments on BigQuery and ThalamusDB.",
+    "tags": [
+      "Evaluation",
+      "Query generation",
+      "Nondeterminism"
+    ],
+    "url": "https://arxiv.org/abs/2609.21133",
+    "caveat": "An evaluation framework rather than a general-purpose workload benchmark. Reported validation accuracy applies to the tested query sets and judging protocol, not all SQL translations or semantic predicates.",
+    "verifiedDate": "2026-10-23",
+    "evidence": "Primary source reviewed"
   }
 ]
