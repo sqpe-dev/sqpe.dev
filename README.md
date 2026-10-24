@@ -43,8 +43,8 @@ CI checks every push and pull request. Production deployment currently uses the 
 
 ## Editorial boundaries
 
-This is a curated first release, not an exhaustive bibliography. Claims are traceable to primary records or vendor documentation. No cross-paper speedup leaderboard is presented. Site content was AI-assisted. Some indexed work is coauthored by Oktie Hassanzadeh; see the public editorial disclosure.
+This is a curated first release, not an exhaustive bibliography. Claims are traceable to primary records or vendor documentation. No cross-paper speedup leaderboard is presented. Some indexed work is coauthored by Oktie Hassanzadeh; see the public editorial disclosure.
 
 ## Design
 
-The design is a technical field journal: warm neutral background, forest-green ink, restrained serif display headings, compact monospace metadata, and a diagram of a semantic query plan. See [docs/DESIGN.md](docs/DESIGN.md).
+The design is a technical field journal: warm neutral background, dark blue ink, restrained serif display headings, compact monospace metadata, and a diagram of a semantic query plan. See [docs/DESIGN.md](docs/DESIGN.md).

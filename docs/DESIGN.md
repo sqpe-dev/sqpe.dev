@@ -15,7 +15,7 @@ The site's core task is helping readers move from an unfamiliar idea to a credib
 
 ## Visual system
 
-Forest ink #223b32; warm paper #f7f7f0; green primary #244d3a; sage highlight #eaf0e1. Georgia headlines create an editorial tone; native sans-serif body avoids font downloads. A compact monospaced layer distinguishes metadata. Fine borders and generous whitespace create hierarchy without decorative imagery.
+Dark blue ink #253448; warm paper #faf9f6; primary #2d4059; neutral highlight #edf0f3. Georgia headlines create an editorial tone; native sans-serif body avoids font downloads. A compact monospaced layer distinguishes metadata. Fine borders and generous whitespace create hierarchy without decorative imagery.
 
 Responsive cards collapse from three columns to two to one. Mobile navigation uses an explicit menu. Native labels, keyboard focus indicators, a skip link, live result counts, semantic headings, reduced-motion handling and horizontally scrollable comparison tables are part of the base design. No client JavaScript is required to read the content or follow sources.
 
