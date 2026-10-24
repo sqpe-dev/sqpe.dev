@@ -13,7 +13,7 @@ if(catalog){
  if(chips.some(c=>c.dataset.filter===params.get('category')))category=params.get('category');
  function filter(updateUrl=true){
   const term=input.value.trim().toLowerCase();let count=0;
-  const ordered=[...cards].sort((a,b)=>sort.value==='newest'?Number(b.dataset.year)-Number(a.dataset.year):sort.value==='name'?a.querySelector('h2').textContent.localeCompare(b.querySelector('h2').textContent):cards.indexOf(a)-cards.indexOf(b));
+  const ordered=[...cards].sort((a,b)=>sort.value==='newest'?(Number(b.dataset.year)||0)-(Number(a.dataset.year)||0):sort.value==='name'?a.querySelector('h2').textContent.localeCompare(b.querySelector('h2').textContent):cards.indexOf(a)-cards.indexOf(b));
   for(const card of ordered){card.hidden=!(card.dataset.search.includes(term)&&(year.value==='all'||card.dataset.year===year.value)&&(category==='All'||card.dataset.category===category)&&extraFilters.every(f=>f.value==='all'||card.dataset[f.dataset.extraFilter]===f.value));if(!card.hidden)count++;grid.append(card)}
   chips.forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.filter===category)));
   document.querySelector('#result-count').textContent=`${count} ${count===1?'record':'records'}`;
