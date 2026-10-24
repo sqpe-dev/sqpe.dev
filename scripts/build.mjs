@@ -1,3 +1,4 @@
+import { bibtexEntry } from './bibtex.mjs';
 import { validateCatalog } from './validate-catalog.mjs';
 import { catalogPage as renderCatalogPage } from './catalog-page.mjs';
 import { readFile, writeFile, mkdir, cp, rm } from 'node:fs/promises';
@@ -1034,28 +1035,9 @@ await writeFile(
     bibliography.map((r) => csvFields.map((k) => csvValue(r[k])).join(',')).join('\n') +
     '\n',
 );
-const bibEscape = (s) =>
-  String(s)
-    .replace(/[\\{}%&#_$]/g, (c) => '\\' + c)
-    .replaceAll('~', '\\textasciitilde{}')
-    .replaceAll('^', '\\textasciicircum{}');
 await writeFile(
   'dist/catalog.bib',
-  bibliography
-    .map(
-      (r) =>
-        '@misc{' +
-        r.id +
-        ',\n  title = {' +
-        bibEscape(r.title) +
-        '},' +
-        (r.year ? '\n  year = {' + r.year + '},' : '') +
-        (r.url ? '\n  url = {' + bibEscape(r.url) + '},' : '') +
-        '\n  note = {' +
-        bibEscape(r.reviewStatus + '; SQPE catalog ' + catalogLock.commit.slice(0, 12)) +
-        '}\n}',
-    )
-    .join('\n\n') + '\n',
+  bibliography.map((r) => bibtexEntry(r, catalogLock.commit)).join('\n\n') + '\n',
 );
 await page(
   '/404.html',

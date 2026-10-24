@@ -170,3 +170,29 @@ if (catalog) {
     }
   });
 }
+
+for (const button of document.querySelectorAll('[data-copy-bibtex]')) {
+  button.hidden = false;
+  button.addEventListener('click', async () => {
+    const feedback = button.closest('.bibliography-body').querySelector('.bibtex-feedback');
+    const status = feedback.querySelector('[role="status"]');
+    const label = feedback.querySelector('label');
+    const textarea = feedback.querySelector('textarea');
+    button.disabled = true;
+    feedback.hidden = false;
+    label.hidden = true;
+    status.textContent = '';
+    try {
+      await navigator.clipboard.writeText(button.dataset.copyBibtex);
+      status.textContent = 'BibTeX copied to clipboard.';
+    } catch {
+      status.textContent = 'Could not access the clipboard. Copy the selected entry below.';
+      textarea.value = button.dataset.copyBibtex;
+      label.hidden = false;
+      textarea.focus();
+      textarea.select();
+    } finally {
+      button.disabled = false;
+    }
+  });
+}

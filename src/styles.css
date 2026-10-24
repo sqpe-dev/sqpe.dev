@@ -1353,7 +1353,7 @@ th:first-child {
 }
 .bibliography-record {
   display: grid;
-  grid-template-columns: 54px minmax(0, 1fr) 165px;
+  grid-template-columns: 6rem minmax(0, 1fr) 165px;
   gap: 24px;
   border: 1px solid #d9dedb;
   border-radius: 7px;
@@ -1429,7 +1429,8 @@ th:first-child {
 .bibliography-links a:first-child {
   font-weight: 600;
 }
-.bibliography-links a:hover {
+.bibliography-links a:hover,
+.bibliography-links button:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -1545,7 +1546,7 @@ th:first-child {
     grid-template-columns: 1fr 240px;
   }
   .bibliography-record {
-    grid-template-columns: 44px minmax(0, 1fr) 145px;
+    grid-template-columns: 6rem minmax(0, 1fr) 145px;
     gap: 18px;
     padding: 25px;
   }
@@ -1726,4 +1727,28 @@ th:first-child {
   .bibliography-evidence p {
     min-width: 140px;
   }
+}
+
+.bibliography-links button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.bibtex-feedback {
+  margin-top: 12px;
+  font-size: 12px;
+}
+.bibtex-feedback textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  border: 1px solid #b9c7ce;
+  background: #fff;
+  color: #333;
+  font: 12px/1.6 monospace;
+  resize: vertical;
 }

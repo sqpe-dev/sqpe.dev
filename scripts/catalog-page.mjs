@@ -1,3 +1,5 @@
+import { bibtexEntry } from './bibtex.mjs';
+
 // Render imported citation links without interpreting arbitrary HTML.
 export function citationHtml(text, esc) {
   const pattern = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
@@ -158,7 +160,21 @@ export function catalogPage({ bibliography, repo, catalogLock, esc, correctionLi
                     ${r.url ? /* HTML */ `<a href="${esc(r.url)}">View source ↗</a>` : ''}${r.profile ? /* HTML */ `<a href="${linkRecord(r)}">Read profile →</a>` : ''}<a
                       href="/catalog/#${r.id}"
                       >Permalink</a
+                    ><button
+                      type="button"
+                      data-copy-bibtex="${esc(bibtexEntry(r, catalogLock.commit))}"
+                      aria-label="Copy BibTeX for ${esc(r.title)}"
+                      hidden
+                    >
+                      Copy BibTeX</button
                     ><a href="${esc(correctionLink(r))}">Suggest a correction</a>
+                  </div>
+                  <div class="bibtex-feedback" hidden>
+                    <p role="status" aria-live="polite"></p>
+                    <label hidden>
+                      BibTeX entry
+                      <textarea readonly rows="8" spellcheck="false"></textarea>
+                    </label>
                   </div>
                   ${
                     r.provenance.length
