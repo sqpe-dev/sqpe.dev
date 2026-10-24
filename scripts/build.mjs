@@ -4,7 +4,7 @@ const research=JSON.parse(await readFile('data/research.json','utf8'));
 const industry=JSON.parse(await readFile('data/industry.json','utf8'));
 const records=[...research,...industry];
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-const repo='https://github.com/oktie/sqpe.dev';
+const repo='https://github.com/sqpe-dev/sqpe.dev';
 const nav=[['/','Overview'],['/learn/','Learn'],['/systems/','Systems'],['/research/','Research'],['/benchmarks/','Benchmarks']];
 const paths=[];
 await rm('dist',{recursive:true,force:true});await mkdir('dist',{recursive:true});await cp('public','dist',{recursive:true});
