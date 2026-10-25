@@ -1,0 +1,243 @@
+{
+  "policy": {
+    "minimumUpdates": 3,
+    "minimumDirectUpdates": 1
+  },
+  "items": [
+    {
+      "id": "semreuse-v1",
+      "title": "SemReuse: auditing reused filter results",
+      "date": "2026-10-12",
+      "kind": "Research",
+      "scope": "direct",
+      "summary": "SemReuse proposes storing semantic-filter outputs as materialized views and using inferred predicate relationships to provisionally accept or skip tuples. A pooled stratified audit checks the resulting answer and triggers additional evaluations when needed.",
+      "implication": "Its contribution is a certification procedure around fallible reuse decisions. The abstract reports up to 15.4× fewer evaluations in its experiments; this does not establish savings for every workload.",
+      "recordIds": ["semreuse"],
+      "sources": [
+        {
+          "label": "Preprint and abstract",
+          "url": "https://arxiv.org/abs/2610.16035"
+        }
+      ]
+    },
+    {
+      "id": "semviews-v1",
+      "title": "SemViews: prior labels guide fresh certification",
+      "date": "2026-10-08",
+      "kind": "Research",
+      "scope": "direct",
+      "summary": "SemViews uses prior query labels, embeddings and helper scores to order tuples, then certifies the answer with fresh stratified oracle samples. The preprint reports 28–45% fewer oracle calls across four workloads.",
+      "implication": "Both SemViews and SemReuse study certified reuse, but their use of prior state and auditing procedures differ. Their reported savings should not be read as a head-to-head comparison.",
+      "recordIds": ["semviews"],
+      "sources": [
+        {
+          "label": "Preprint and abstract",
+          "url": "https://arxiv.org/abs/2610.12768"
+        }
+      ]
+    },
+    {
+      "id": "nousdb-v2",
+      "title": "NousDB: token costs enter query planning",
+      "date": "2026-10-21",
+      "kind": "Research",
+      "scope": "direct",
+      "summary": "NousDB’s October 21 revision describes a DataFusion-based engine with semantic algebra, token histograms and batching under context-window constraints. The first version appeared October 20.",
+      "implication": "Token volume and batching fidelity become planning concerns alongside relational rewrites. The profile retains the paper’s claims as author-reported results.",
+      "recordIds": ["nousdb"],
+      "sources": [
+        {
+          "label": "Preprint and version history",
+          "url": "https://arxiv.org/abs/2610.28551"
+        }
+      ]
+    },
+    {
+      "id": "jevdb-v1",
+      "title": "JEVDB: decision models and join pruning",
+      "date": "2026-10-01",
+      "kind": "Research",
+      "scope": "direct",
+      "summary": "JEVDB uses typed decision models for filters, joins, classification and ranking, with selective escalation to generative models. Its join execution combines relational reduction with semantic candidate screening.",
+      "implication": "This explores a different execution choice from generating text for every decision. The reported evaluations use SemBench and the join-oriented Shelob workload.",
+      "recordIds": ["jevdb"],
+      "sources": [
+        {
+          "label": "Preprint and abstract",
+          "url": "https://arxiv.org/abs/2610.02046"
+        }
+      ]
+    },
+    {
+      "id": "variance-v1",
+      "title": "Repeatability is an evaluation dimension",
+      "date": "2026-10-09",
+      "kind": "Research",
+      "scope": "direct",
+      "summary": "Same Query, Different Answer studies repeated executions of semantic workloads at temperature zero. It distinguishes changes to individual operator decisions, complete answers and aggregate quality.",
+      "implication": "A stable average score need not mean a stable answer. Repeated execution and item-level reporting are relevant when comparing engines or validating a cached result.",
+      "recordIds": ["run-to-run-variance"],
+      "sources": [
+        {
+          "label": "Preprint and abstract",
+          "url": "https://arxiv.org/abs/2610.13823"
+        }
+      ]
+    },
+    {
+      "id": "cadenza-publication",
+      "title": "CADENZA: exposing tasks inside an operator",
+      "date": "2026-09-29",
+      "kind": "Research",
+      "scope": "direct",
+      "summary": "The PACMMOD publication develops intent-specific task DAGs and task-extended relational algebra for semantic operators. It is associated with SIGMOD 2027; the preprint was already available in June 2026.",
+      "implication": "The newly added profile covers a previously cataloged source. Planning includes task decomposition and routing, rather than treating each semantic call as a single fixed implementation.",
+      "recordIds": ["arxiv-2606-29151"],
+      "sources": [
+        {
+          "label": "Preprint and abstract",
+          "url": "https://arxiv.org/abs/2606.29151"
+        },
+        {
+          "label": "Published paper",
+          "url": "https://doi.org/10.1145/3837103"
+        },
+        {
+          "label": "Publisher citation record and online publication date",
+          "url": "https://doi.org/10.14778/3811243.3811249"
+        }
+      ]
+    },
+    {
+      "id": "snowflake-cache-2026-09-29",
+      "title": "Snowflake caches identical calls within a query",
+      "date": "2026-09-29",
+      "kind": "Product",
+      "scope": "direct",
+      "summary": "Snowflake documents automatic, best-effort response caching for identical AI_COMPLETE text calls within a single query. Cache hits are not billed.",
+      "implication": "This is exact-call reuse within one execution. It does not provide the cross-query, predicate-level certification studied by the reuse papers.",
+      "recordIds": ["snowflake-response-caching", "snowflake"],
+      "sources": [
+        {
+          "label": "Official release note",
+          "url": "https://docs.snowflake.com/en/release-notes/2026/other/2026-09-29-cortex-response-caching"
+        }
+      ]
+    },
+    {
+      "id": "databricks-extraction-2026-10-02",
+      "title": "Databricks updates extraction and chart parsing",
+      "date": "2026-10-02",
+      "kind": "Product",
+      "scope": "direct",
+      "summary": "Databricks’ October 2 release notes describe a new standard-mode ai_extract checkpoint, with a vendor-reported 2.3× speed improvement and higher quality at unchanged cost. ai_parse_document also returns chart data as structured JSON.",
+      "implication": "These are changes to extraction functions. The announcement does not establish an end-to-end semantic-query optimization result.",
+      "recordIds": ["databricks-extraction-october-2026", "databricks"],
+      "sources": [
+        {
+          "label": "Official October release notes",
+          "url": "https://docs.databricks.com/aws/en/release-notes/product/2026/october"
+        }
+      ]
+    },
+    {
+      "id": "imlane-library",
+      "title": "IMLane: separating inference and database scheduling",
+      "date": "2026-09-01",
+      "kind": "Research",
+      "scope": "adjacent",
+      "summary": "IMLane uses process-level AI-function execution and separates inference scheduling from the database scheduler. Its publication and abstract describe integrations with OceanBase and DuckDB.",
+      "implication": "New to this catalog, but earlier than this issue’s reporting window. It concerns execution of AI functions, including predictive models, rather than a new semantic-operator language.",
+      "recordIds": ["imlane"],
+      "sources": [
+        {
+          "label": "DuckDB publication listing",
+          "url": "https://duckdb.org/library/imlane/"
+        },
+        {
+          "label": "PVLDB paper",
+          "url": "https://www.vldb.org/pvldb/vol19/p4223-xu.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fdj-preprint",
+      "title": "Featurized-Decomposition Join: pruning through features",
+      "date": "2025-12-05",
+      "kind": "Research",
+      "scope": "direct",
+      "summary": "FDJ extracts features and combines inexpensive comparisons to prune semantic-join candidates, with statistical quality guarantees described in the preprint.",
+      "implication": "This newly profiled paper was already in the bibliography. Its verified preprint date is December 2025, so it is background reading rather than a new October result.",
+      "recordIds": ["arxiv-2512-05399"],
+      "sources": [
+        {
+          "label": "Preprint and abstract",
+          "url": "https://arxiv.org/abs/2512.05399"
+        }
+      ]
+    },
+    {
+      "id": "snowflake-evaluation-optimization",
+      "title": "Snowflake adds evaluation and configuration search",
+      "date": "2026-09-21",
+      "kind": "Product",
+      "scope": "direct",
+      "summary": "Two public previews support measuring AI-function quality, cost and consistency, and searching prompt/model configurations against a common dataset and metric. A selected configuration can become a reusable SQL AI function.",
+      "implication": "These September 21 announcements precede the reporting window. They supply context for function-level optimization; they do not establish joint optimization of an entire relational plan.",
+      "recordIds": ["ref-201f6dcd0dc2", "ref-d6b532935920", "snowflake"],
+      "sources": [
+        {
+          "label": "Evaluation preview",
+          "url": "https://docs.snowflake.com/en/release-notes/2026/other/2026-09-21-ai-function-evaluation-preview"
+        },
+        {
+          "label": "Optimization preview",
+          "url": "https://docs.snowflake.com/en/release-notes/2026/other/2026-09-21-ai-function-optimization-preview"
+        }
+      ]
+    },
+    {
+      "id": "bigquery-graph-ga",
+      "title": "BigQuery Graph reaches general availability",
+      "date": "2026-09-01",
+      "kind": "Product",
+      "scope": "adjacent",
+      "summary": "Google’s September 1 announcement describes native GQL graph traversal alongside SQL, with access to BigQuery ML and AI functions in the same query.",
+      "implication": "This is older, adjacent infrastructure for combining graph, relational and model-based computation. It is not evidence of a new semantic-operator optimization technique.",
+      "recordIds": ["bigquery-graph-ga", "bigquery"],
+      "sources": [
+        {
+          "label": "Official announcement",
+          "url": "https://cloud.google.com/blog/products/data-analytics/bigquery-graph-connecting-data-and-ai-at-scale/"
+        }
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "2026-10-24",
+      "date": "2026-10-24",
+      "windowStart": "2026-09-25",
+      "windowEnd": "2026-10-24",
+      "title": "Certified reuse, execution choices, and repeatability",
+      "summary": "Research on semantic-filter reuse, task-level planning and query execution, alongside product updates to caching and extraction.",
+      "introduction": "This issue covers selected developments from September 25 through October 24, 2026. The research raises three distinct questions: which previous decisions can be reused, which computation should implement an operator, and how reliably repeated runs reproduce an answer. Product releases address narrower parts of these questions through exact-call caching and extraction improvements.",
+      "itemIds": [
+        "semreuse-v1",
+        "semviews-v1",
+        "nousdb-v2",
+        "jevdb-v1",
+        "variance-v1",
+        "cadenza-publication",
+        "snowflake-cache-2026-09-29",
+        "databricks-extraction-2026-10-02"
+      ],
+      "contextIds": [
+        "imlane-library",
+        "fdj-preprint",
+        "snowflake-evaluation-optimization",
+        "bigquery-graph-ga"
+      ]
+    }
+  ]
+}

@@ -13,6 +13,7 @@
     "test": "node --test",
     "check": "npm run format:check && npm run build && npm test",
     "catalog:update": "node scripts/update-catalog.mjs",
+    "newsletter:status": "node scripts/newsletter-status.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

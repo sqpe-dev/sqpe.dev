@@ -1,6 +1,14 @@
 import { bibtexEntry } from './bibtex.mjs';
 import { validateCatalog } from './validate-catalog.mjs';
 import { catalogPage as renderCatalogPage } from './catalog-page.mjs';
+import {
+  validateNewsletter,
+  newsletterIndex,
+  newsletterIssue,
+  newsletterFeed,
+  newestIssues,
+  issuePath,
+} from './newsletter.mjs';
 import { readFile, writeFile, mkdir, cp, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
@@ -14,10 +22,13 @@ for (const [file, hash] of Object.entries(catalogLock.files)) {
     throw new Error('Catalog checksum mismatch: ' + file);
 }
 const bibliography = JSON.parse(await readFile('data/catalog.json', 'utf8'));
+const newsletter = JSON.parse(await readFile('data/newsletter.json', 'utf8'));
+validateNewsletter(newsletter, bibliography);
+const latestIssue = newestIssues(newsletter)[0];
 validateCatalog(bibliography, JSON.parse(await readFile('data/reference-inventory.json', 'utf8')));
 const research = bibliography.filter((r) => r.profile && r.category !== 'Industry platform');
 const industry = bibliography.filter((r) => r.profile && r.category === 'Industry platform');
-const records = [...research, ...industry];
+const records = bibliography.filter((r) => r.profile);
 const esc = (s) =>
   String(s)
     .replaceAll('&', '&amp;')
@@ -32,6 +43,7 @@ const nav = [
   ['/research/', 'Research'],
   ['/benchmarks/', 'Benchmarks'],
   ['/catalog/', 'Catalog'],
+  ['/newsletter/', 'Newsletter'],
 ];
 const paths = [];
 await rm('dist', { recursive: true, force: true });
@@ -47,7 +59,13 @@ function structuredData(title, desc, path) {
   if (path === '/404.html') return '';
   const url = origin + path;
   const record = records.find((r) => linkRecord(r) === path);
-  const collection = ['/research/', '/systems/', '/benchmarks/', '/catalog/'].includes(path);
+  const collection = [
+    '/research/',
+    '/systems/',
+    '/benchmarks/',
+    '/catalog/',
+    '/newsletter/',
+  ].includes(path);
   const webpage = {
     '@type': collection ? 'CollectionPage' : 'WebPage',
     '@id': url + '#webpage',
@@ -128,6 +146,12 @@ function layout(title, desc, body, path, active = path) {
           href="/feed.xml"
         />
         <script src="/app.js" defer></script>
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          title="SQPE newsletter"
+          href="/newsletter/feed.xml"
+        />
       </head>
       <body>
         <a class="skip" href="#main">Skip to content</a>
@@ -154,8 +178,9 @@ function layout(title, desc, body, path, active = path) {
               </div>
             </div>
             <div class="footer-links">
-              <a href="/about/">Editorial policy</a><a href="/updates/">Updates</a
-              ><a href="/catalog/">Open catalog ↗</a><a href="${repo}">GitHub ↗</a>
+              <a href="/about/">Editorial policy</a><a href="/newsletter/">Newsletter</a
+              ><a href="/updates/">Updates</a><a href="/catalog/">Open catalog ↗</a
+              ><a href="${repo}">GitHub ↗</a>
             </div>
           </div>
         </footer>
@@ -264,10 +289,26 @@ await page(
     </section>
     <div class="stat-strip">
       <div class="eyebrow">COLLECTION OVERVIEW</div>
-      <div><strong>${research.length}</strong><span>research records</span></div>
-      <div><strong>${industry.length}</strong><span>industry platforms</span></div>
-      <div><strong>06</strong><span>core operator concepts</span></div>
+      <div><strong>${bibliography.length}</strong><span>catalog sources</span></div>
+      <div><strong>${research.length}</strong><span>research profiles</span></div>
+      <div><strong>${industry.length}</strong><span>industry platform profiles</span></div>
     </div>
+    <p class="collection-note">
+      Profiles cover a subset of the <a href="/catalog/">full catalog</a>, which includes research
+      and product documentation.
+      <a href="/catalog/?status=Metadata+pending+verification"
+        >${bibliography.filter((r) => r.reviewStatus === 'Metadata pending verification').length}
+        sources await metadata verification</a
+      >; inclusion does not imply a full-paper review.
+    </p>
+    <section class="newsletter-home" aria-label="Latest newsletter">
+      <div>
+        <span class="eyebrow">LATEST NEWSLETTER · ${esc(latestIssue.date)}</span>
+        <h2><a href="${issuePath(latestIssue)}">${esc(latestIssue.title)}</a></h2>
+        <p>${esc(latestIssue.summary)}</p>
+      </div>
+      <a class="text-link" href="/newsletter/">Read the newsletter →</a>
+    </section>
     <section class="section">
       <div class="section-head">
         <div>
@@ -444,7 +485,7 @@ for (const r of records) {
           <h2>How to read the evidence</h2>
           <p>${esc(r.caveat)}</p>
           <div class="notice">
-            ${r.reviewNote ? esc(r.reviewNote) : r.evidence === 'Primary source reviewed' ? 'We checked the primary publication record and abstract. This profile summarizes author-reported work; it does not claim a full-paper audit, implementation audit, or independent reproduction.' : 'This profile is based on official product documentation. Features, availability and pricing can change; confirm requirements in the linked documentation before choosing a platform.'}
+            ${r.reviewNote ? esc(r.reviewNote) : r.reviewStatus === 'Publication record checked' ? 'We checked the primary publication record and abstract. This profile summarizes author-reported work; it does not claim a full-paper audit, implementation audit, or independent reproduction.' : r.reviewStatus === 'Documentation checked' ? 'This profile is based on official product documentation. Features, availability and pricing can change; confirm requirements in the linked documentation before choosing a platform.' : esc(r.evidence)}
           </div>
           ${
             r.resources?.length
@@ -1011,6 +1052,23 @@ await page(
 );
 
 await page(
+  '/newsletter/',
+  'SQPE newsletter',
+  'Dated research and industry updates on semantic query processing, with primary sources and an issue archive.',
+  newsletterIndex(newsletter, esc),
+);
+for (const issue of newestIssues(newsletter))
+  await page(
+    issuePath(issue),
+    issue.title,
+    issue.summary,
+    newsletterIssue(issue, newsletter, bibliography, esc),
+    '/newsletter/',
+  );
+await writeFile('dist/newsletter/feed.xml', newsletterFeed(newsletter, esc));
+await writeFile('dist/newsletter.json', JSON.stringify(newsletter, null, 2) + '\n');
+
+await page(
   '/catalog/',
   'Open SQPE catalog',
   'The complete maintained SQPE bibliography, with review status, source links, downloads and public contributions.',
@@ -1073,8 +1131,13 @@ await writeFile(
       ><title>sqpe.dev updates</title><id>https://sqpe.dev/</id
       ><link href="https://sqpe.dev/feed.xml" rel="self" /><link
         href="https://sqpe.dev/updates/"
-      /><updated>2026-10-24T02:00:00Z</updated><author><name>sqpe.dev</name></author
-      ><entry
+      /><updated>${latestIssue.date}T12:00:00Z</updated><author><name>sqpe.dev</name></author
+      >${newestIssues(newsletter)
+        .map(
+          (i) =>
+            `<entry><id>https://sqpe.dev${issuePath(i)}</id><title>${esc(i.title)}</title><link href="https://sqpe.dev${issuePath(i)}"/><updated>${i.date}T12:00:00Z</updated><summary>${esc(i.summary)}</summary></entry>`,
+        )
+        .join('')}<entry
         ><id>https://sqpe.dev/updates/#open-catalog</id
         ><title>Open bibliography and public contributions</title
         ><link href="https://sqpe.dev/catalog/" /><updated>2026-10-24T02:00:00Z</updated>

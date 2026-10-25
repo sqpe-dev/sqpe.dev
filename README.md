@@ -4,6 +4,8 @@
 
 A reference site for semantic query processing: research engines, semantic operators, optimization methods, and evaluation. The site combines explanatory articles with source-linked profiles and a searchable bibliography.
 
+The [newsletter](https://sqpe.dev/newsletter/) provides dated research and industry reports with an [Atom feed](https://sqpe.dev/newsletter/feed.xml). Sources are checked weekly; issues are published when at least three substantive developments, including one directly relevant to semantic query processing, have accumulated. See [newsletter maintenance](docs/NEWSLETTER.md) for source verification, pending updates and production publication.
+
 **[Read the field guide](https://sqpe.dev)** · **[Browse the catalog](https://sqpe.dev/catalog/)** · **[Suggest a source](https://github.com/sqpe-dev/catalog/issues/new/choose)**
 
 ## Website and catalog
@@ -27,6 +29,7 @@ Open [localhost:4173](http://127.0.0.1:4173). The preview server serves `dist/`;
 ```sh
 npm run format        # Format maintained source and documentation
 npm run check         # Check formatting, build, and run tests
+npm run newsletter:status # Inspect pending updates and publication readiness
 ```
 
 The checks cover catalog integrity, citation provenance, safe source URLs, generated links, metadata, sitemap coverage, and exports. Browser verification remains necessary for interaction and layout changes.
