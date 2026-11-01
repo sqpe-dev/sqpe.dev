@@ -211,6 +211,94 @@
           "url": "https://cloud.google.com/blog/products/data-analytics/bigquery-graph-connecting-data-and-ai-at-scale/"
         }
       ]
+    },
+    {
+      "id": "tada-atoms-v1",
+      "title": "TADA-Agent: materializing semantic outputs for exact analysis",
+      "date": "2026-10-26",
+      "kind": "Research",
+      "scope": "direct",
+      "summary": "This preprint defines two query-driven operations for text analysis: Tagging produces a value for each input item, while Categorization produces a category table. TADA-Agent materializes these outputs for subsequent SQL or Python computation.",
+      "implication": "The authors evaluate complete analysis workflows on 40 TABench requests. Their comparison uses a held-out TADA reference run and native execution paths; the abstract does not establish a general accuracy guarantee or isolate an optimizer improvement.",
+      "recordIds": ["tada-semantic-atoms"],
+      "sources": [
+        {
+          "label": "Preprint, abstract and version history",
+          "url": "https://arxiv.org/abs/2610.34860"
+        }
+      ]
+    },
+    {
+      "id": "snowflake-agentic-parse-preview",
+      "title": "Snowflake previews visual processing inside AI_PARSE_DOCUMENT",
+      "date": "2026-10-28",
+      "kind": "Product",
+      "scope": "direct",
+      "summary": "AGENTIC mode enters public preview. Snowflake describes a SQL function that identifies visual content, selects processing actions, and returns document text and layout alongside visual summaries or structured extraction results.",
+      "implication": "This expands document-processing behavior to charts, tables and diagrams under managed orchestration. These are vendor-documented capabilities; the release note provides no independent comparison of extraction quality or query cost.",
+      "recordIds": ["snowflake-agentic-parse", "snowflake"],
+      "sources": [
+        {
+          "label": "Official public-preview announcement",
+          "url": "https://docs.snowflake.com/en/release-notes/2026/other/2026-10-28-ai-parse-document-agentic-mode-preview"
+        }
+      ]
+    },
+    {
+      "id": "databricks-ai-permissions-ga",
+      "title": "Databricks makes task-specific AI-function permissions generally available",
+      "date": "2026-10-27",
+      "kind": "Product",
+      "scope": "direct",
+      "summary": "Unity Catalog permissions can govern task-specific functions in the system.ai schema. The October 27 announcement marks general availability; account-team enablement is still required.",
+      "implication": "Administrators can restrict which AI functions users may invoke. The documented controls exclude ai_query, whose model-serving endpoint uses separate permissions. This changes operational governance rather than query-plan optimization.",
+      "recordIds": ["databricks-ai-function-permissions", "databricks"],
+      "sources": [
+        {
+          "label": "Dated release announcement",
+          "url": "https://docs.databricks.com/aws/en/release-notes/product/2026/october"
+        },
+        {
+          "label": "Permissions, requirements and limitations",
+          "url": "https://docs.databricks.com/aws/en/large-language-models/ai-functions-uc-permissions"
+        }
+      ]
+    },
+    {
+      "id": "bigquery-count-tokens-ga",
+      "title": "BigQuery makes input-token estimation generally available",
+      "date": "2026-10-27",
+      "kind": "Product",
+      "scope": "adjacent",
+      "summary": "AI.COUNT_TOKENS estimates the token count of a text prompt using model-specific tokenization rules. Google lists its general availability in the October 27 release notes.",
+      "implication": "Token estimates can inform input-cost analysis before invoking an AI function. They exclude thinking and output tokens and do not by themselves provide a complete query-cost estimate or an optimization policy.",
+      "recordIds": ["bigquery-count-tokens", "bigquery"],
+      "sources": [
+        {
+          "label": "Dated release announcement",
+          "url": "https://docs.cloud.google.com/bigquery/docs/release-notes#October_27_2026"
+        },
+        {
+          "label": "Function semantics and limitations",
+          "url": "https://docs.cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-count-tokens"
+        }
+      ]
+    },
+    {
+      "id": "octopus-v1-background",
+      "title": "Background: OCTOPUS stores model judgments as relational data",
+      "date": "2026-10-23",
+      "kind": "Research",
+      "scope": "direct",
+      "summary": "OCTOPUS proposes tags and tag operators to retain model judgments in database relations. Relationships between predicates guide reuse, elimination, test simplification and search order across queries.",
+      "implication": "The preprint predates this issue’s reporting window and is included as newly verified background. Its abstract reports a prototype evaluation on the movie scenario of SemBench; this does not establish certified correctness of reused judgments.",
+      "recordIds": ["octopus-tag-model"],
+      "sources": [
+        {
+          "label": "Preprint, abstract and version history",
+          "url": "https://arxiv.org/abs/2610.32586"
+        }
+      ]
     }
   ],
   "issues": [
@@ -238,6 +326,22 @@
         "snowflake-evaluation-optimization",
         "bigquery-graph-ga"
       ]
+    },
+    {
+      "id": "2026-11-01",
+      "date": "2026-11-01",
+      "windowStart": "2026-10-25",
+      "windowEnd": "2026-11-01",
+      "title": "Semantic outputs, document processing, and operational controls",
+      "summary": "A preprint on reusable semantic outputs, a document-processing preview, and releases for AI-function permissions and token estimation.",
+      "introduction": "This issue covers four developments from October 25 through November 1, 2026. TADA-Agent exposes semantic outputs for subsequent exact computation. Product releases address document interpretation, access to AI functions, and estimation of input-token costs. An October 23 preprint on cross-query reuse appears separately as background and does not count toward the publication threshold.",
+      "itemIds": [
+        "tada-atoms-v1",
+        "snowflake-agentic-parse-preview",
+        "databricks-ai-permissions-ga",
+        "bigquery-count-tokens-ga"
+      ],
+      "contextIds": ["octopus-v1-background"]
     }
   ]
 }
