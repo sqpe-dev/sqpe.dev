@@ -1,10 +1,5 @@
 {
   "lastChecked": "2026-11-08",
-  "lastDeployedIssue": "2026-11-01",
-  "pendingItemIds": [
-    "seqoflow-v1",
-    "snowflake-extract-nov02",
-    "databricks-ai-tasks-beta",
-    "databricks-runtime-support-announcement"
-  ]
+  "lastDeployedIssue": "2026-11-08",
+  "pendingItemIds": []
 }
