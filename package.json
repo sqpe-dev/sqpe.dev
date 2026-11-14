@@ -15,7 +15,8 @@
     "catalog:update": "node scripts/update-catalog.mjs",
     "newsletter:status": "node scripts/newsletter-status.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "newsletter:verify": "node scripts/verify-newsletter-deployment.mjs"
   },
   "devDependencies": {
     "prettier": "3.9.10"
