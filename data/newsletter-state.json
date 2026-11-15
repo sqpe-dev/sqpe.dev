@@ -1,5 +1,34 @@
 {
   "lastChecked": "2026-11-08",
   "lastDeployedIssue": "2026-11-08",
-  "pendingItemIds": []
+  "pendingItemIds": [],
+  "incompleteCheck": {
+    "date": "2026-11-15",
+    "reason": "Source review found a changed Databricks runtime deadline in the published November 8 issue; correction and remaining discovery review are unfinished.",
+    "verifiedCandidates": [
+      {
+        "id": "snowflake-page-filtering-2026-11-10",
+        "date": "2026-11-10",
+        "source": "https://docs.snowflake.com/en/release-notes/2026/other/2026-11-10-fl-filter-pages",
+        "finding": "AI_EXTRACT and AI_PARSE_DOCUMENT accept FL_FILTER_PAGES for individual pages, ranges and per-document page selection."
+      },
+      {
+        "id": "databricks-ai-task-bundles-beta",
+        "date": "2026-11-13",
+        "source": "https://docs.databricks.com/aws/en/release-notes/product/2026/november",
+        "finding": "Declarative Automation Bundles support AI Function tasks in Beta; distinct from November 4 task introduction."
+      }
+    ],
+    "correction": {
+      "itemId": "databricks-runtime-support-announcement",
+      "source": "https://docs.databricks.com/aws/en/release-notes/product/2026/november",
+      "finding": "Current official November 5 announcement states February 1, 2027, rather than January 2027. Reconcile and explicitly date correction before redeployment."
+    },
+    "backgroundCandidate": {
+      "source": "https://arxiv.org/abs/2611.08367",
+      "finding": "CascadeFilter v1 submitted November 5; absent from pinned catalog. Older background, not a new event for this window."
+    },
+    "upstreamCommit": "4931c449b6b4a484504a6f26a1b57db0e4b3c2f5",
+    "productionVerification": "November 8 issue, archive, both feeds and catalog matched checked build on November 15."
+  }
 }
