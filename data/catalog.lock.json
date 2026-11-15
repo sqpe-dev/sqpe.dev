@@ -1,8 +1,8 @@
 {
   "repository": "sqpe-dev/catalog",
-  "commit": "4931c449b6b4a484504a6f26a1b57db0e4b3c2f5",
+  "commit": "3b596c1858998e63ffaa592b9c7478548a4d535e",
   "files": {
-    "catalog.json": "beae48ff9177f8363432012dd9e72081194612292e45fcc23d93d2621b1c52b1",
+    "catalog.json": "e2a8ef1966fd5e73f68237f8d4ce9a0c1db286d2a64d9c39996f561a2f0bc343",
     "reference-inventory.json": "e6ae89d1f8586ccbef13747f9b7c113fc514ff77d9dae1554fcad3c712f2d7fb"
   }
 }

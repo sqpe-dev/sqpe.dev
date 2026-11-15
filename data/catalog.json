@@ -3866,7 +3866,7 @@
     "profile": false,
     "verifiedDate": "2026-11-08",
     "evidence": "Official announcement and documentation checked; no independent evaluation.",
-    "summary": "Databricks announces that AI Functions in SQL will stop supporting runtimes below 17.3 LTS starting in January 2027. The November notice excludes ai_similarity and the AI Functions REST API from this change.",
+    "summary": "Starting February 1, 2027, SQL calls to AI Functions that currently require Databricks Runtime 15.4 LTS or above will require Runtime 17.3 LTS or above. The announcement excludes ai_forecast, ai_top_drivers, ai_detect_anomalies, ai_predict_class, ai_predict_value, vector_search and the AI Functions REST API.",
     "tags": [
       "Product updates"
     ],

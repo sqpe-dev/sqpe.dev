@@ -4,7 +4,7 @@
   "pendingItemIds": [],
   "incompleteCheck": {
     "date": "2026-11-15",
-    "reason": "Source review found a changed Databricks runtime deadline in the published November 8 issue; correction and remaining discovery review are unfinished.",
+    "reason": "Remaining discovery review is unfinished; the November 8 runtime deadline and exemption correction was deployed and verified November 15.",
     "verifiedCandidates": [
       {
         "id": "snowflake-page-filtering-2026-11-10",
@@ -22,7 +22,10 @@
     "correction": {
       "itemId": "databricks-runtime-support-announcement",
       "source": "https://docs.databricks.com/aws/en/release-notes/product/2026/november",
-      "finding": "Current official November 5 announcement states February 1, 2027, rather than January 2027. Reconcile and explicitly date correction before redeployment."
+      "finding": "Current official November 5 announcement states February 1, 2027, rather than January 2027. Reconcile and explicitly date correction before redeployment.",
+      "status": "deployed-and-verified",
+      "verifiedDate": "2026-11-15",
+      "catalogCommit": "3b596c1858998e63ffaa592b9c7478548a4d535e"
     },
     "backgroundCandidate": {
       "source": "https://arxiv.org/abs/2611.08367",
